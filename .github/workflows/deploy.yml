@@ -18,8 +18,12 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22
-          protocol: sftp # ★ここをsftpに変更
-          # さくらサーバーの絶対パスを指定（algo-incの部分はそのまま利用）
-          server-dir: /home/algo-inc/www/anken/
+          port: 21
+          # ポート21の場合は protocol を指定しない（または ftp にする）のが最も安定します
+          protocol: ftp
+          # さくらサーバーの標準的なパス形式に戻します
+          server-dir: ./www/anken/
+          # 接続トラブルを防ぐため、一旦セキュリティを「ルーズ（許容）」に設定
           security: loose
+          # 転送の安定性を高めるためのタイムアウト設定
+          timeout: 60000
