@@ -19,7 +19,9 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          # パスを / から始め、プロトコルを明示指定します
-          server-dir: /www/anken/
-          protocol: ftp
-          security: false
+          # パスをさくらサーバーの標準的な形式に合わせます
+          server-dir: ./www/anken/
+          # 接続のタイムアウトを防ぐための設定を追加
+          timeout: 60000
+          # セキュリティ設定を修正
+          security: loose
