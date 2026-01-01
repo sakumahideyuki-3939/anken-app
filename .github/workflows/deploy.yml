@@ -3,13 +3,13 @@ name: Deploy to Sakura Server
 on:
   push:
     branches:
-      - main  # mainブランチにプッシュされた時に実行
+      - main
 
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code　
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: FTP Deploy
@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          # サーバー上のアップロード先（ankenフォルダ等に合わせて調整してください）
-          server-dir: ./www/anken/ 
-          # FTPS（暗号化）を明示的に使用
-          security: loose
+          # パスを / から始め、プロトコルを明示指定します
+          server-dir: /www/anken/
+          protocol: ftp
+          security: false
