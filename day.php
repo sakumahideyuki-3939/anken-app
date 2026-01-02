@@ -317,4 +317,4 @@ function render_judge_text($judge_data) {
         return implode('<br>', $parts);
     }
 }
-?>
+?>render_judge_text(['anken'=>['ok'=>true]]);
