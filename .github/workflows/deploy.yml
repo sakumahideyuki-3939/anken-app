@@ -19,11 +19,10 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          # ポート21の場合は protocol を指定しない（または ftp にする）のが最も安定します
           protocol: ftp
-          # さくらサーバーの標準的なパス形式に戻します
-          server-dir: ./www/anken/
-          # 接続トラブルを防ぐため、一旦セキュリティを「ルーズ（許容）」に設定
+          # 【修正ポイント1】先ほど作成したフォルダ名に正確に合わせます
+          server-dir: /www/anken-app/
+          # 【修正ポイント2】さくらサーバーのECONNRESET対策（接続を安定化）
           security: loose
-          # 転送の安定性を高めるためのタイムアウト設定
-          timeout: 60000
+          # 1ファイルずつ確実に送る設定に変更（同時接続による遮断を防ぐ）
+          state-name: .ftp-deploy-sync-state.json
