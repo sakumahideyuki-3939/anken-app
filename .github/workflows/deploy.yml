@@ -20,9 +20,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          # さくらサーバーの絶対パス形式に変更します
-          server-dir: /home/algo-inc/www/anken-app/
-          # 接続切断（ECONNRESET）を防ぐための設定
+          # 【重要修正】ログイン後の視点から見たパスに変更し、確実に anken-app フォルダへ届けます
+          server-dir: ./www/anken-app/
+          # 接続の安定性を高める設定
           security: loose
-          # 転送の衝突を防ぎ、1つずつ確実に送る設定
           state-name: .ftp-deploy-sync-state.json
