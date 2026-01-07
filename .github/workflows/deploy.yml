@@ -20,8 +20,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          # 【重要修正】ログイン後の視点から見たパスに変更し、確実に anken-app フォルダへ届けます
-          server-dir: ./www/anken-app/
-          # 接続の安定性を高める設定
+          # 【最終修正】ドメインが参照している正しい公開フォルダを指定します
+          server-dir: ./www/algo-inc/anken-app/
           security: loose
           state-name: .ftp-deploy-sync-state.json
