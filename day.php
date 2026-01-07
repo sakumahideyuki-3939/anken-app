@@ -216,7 +216,7 @@ $next = clone $target_obj; $next->modify('+1 day');
                         <input type="number" name="bd" value="<?php echo h($bd); ?>">
                     </div>
                     <div>
-                        <strong>指定日: </strong>
+                        strong>指定日.: 指定st
                         <input type="number" name="ty" value="<?php echo h($ty); ?>">.
                         <input type="number" name="tm" value="<?php echo h($tm); ?>">.
                         <input type="number" name="td" value="<?php echo h($td); ?>">
