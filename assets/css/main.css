@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ALGO COMPANY - UNIQUE</title>
+    <style>
+        /* 1. 全体リセットと絶対規格 */
+        body { margin: 0; padding: 0; background-color: #ffffff; color: #333; font-family: "Hiragino Mincho ProN", serif; }
+        .algo-site-clean { width: 1920px; margin: 0 auto; overflow-x: hidden; }
+
+        /* 2. グリッド規格定義 */
+        .section-container { display: flex; flex-wrap: wrap; width: 1920px; }
+        
+        .unit-wide { width: 1920px; height: 960px; background-color: #f8f8f8; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .unit-vertical { width: 480px; height: 960px; padding: 60px; box-sizing: border-box; }
+        .unit-square-large { width: 960px; height: 960px; background-size: cover; background-position: center; }
+
+        /* 3. 個別装飾 */
+        h1 { font-size: 80px; letter-spacing: 0.2em; margin: 0; font-weight: normal; }
+        h2 { font-size: 32px; line-height: 1.6; margin-bottom: 40px; font-weight: normal; }
+        p { font-size: 16px; line-height: 2.0; text-align: justify; }
+        .placeholder-gray { background-color: #E0E0E0; }
+        .placeholder-dark { background-color: #DCDCDC; }
+
+        /* 4. 会社概要テーブル */
+        .info-area { padding: 100px; }
+        table { width: 100%; border-collapse: collapse; }
+        th { width: 200px; text-align: left; padding: 20px 0; border-bottom: 1px solid #eee; }
+        td { padding: 20px 0; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<div class="algo-site-clean">
+
+    <section class="unit-wide">
+        <div>
+            <h1>COMPANY</h1>
+            <p>会社概要</p>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="unit-vertical">
+            <h2>クリエイティブで楽しいことをしながら顧客と共に成長していく会社</h2>
+            <p>UNIQUEの設計プロセスは、彼らのユニークなスタイルを構成するものを真に理解することから始まります。長期にわたりお客様のニーズに応え、数え切れないほどの経験とともに技術と知識を磨いてきました。</p>
+        </div>
+        
+        <div class="unit-vertical placeholder-gray">
+            </div>
+
+        <div class="unit-square-large placeholder-dark">
+            </div>
+    </section>
+
+    <section class="section-container">
+        <div class="unit-square-large placeholder-dark"></div>
+        <div class="unit-vertical">
+            <h3>デザイン開発との融合から生まれる<br>リアルコミュニケーションの重要性</h3>
+            <p>デザインはシンプルでいて非常に奥深い世界です。クリエイターは譲れないこだわりをもって、魅力的なプロダクトを生み出しています。</p>
+        </div>
+        <div class="unit-vertical">
+            <h3>自社のサービスの役割をより明確に<br>最先端のデザインとブランディング化の知識</h3>
+            <p>UNIQUEの設計プロセスは、顧客が空間をどのように使用しているか、そして彼らのユニークなスタイルを構成するものを真に理解することから始まります。</p>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
