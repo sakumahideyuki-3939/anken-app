@@ -2,72 +2,65 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1920">
-    <title>WORK | UNIQUE</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #fff; color: #333; font-family: "Hiragino Mincho ProN", serif; -webkit-font-smoothing: antialiased; }
-        .algo-site { width: 1920px; margin: 0 auto; }
-        .grid-row { display: flex; flex-wrap: wrap; width: 1920px; }
-
-        /* HERO: 1920x960 */
-        .w-hero { width: 1920px; height: 960px; background: #fcfcfc; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .w-hero h1 { font-size: 54px; letter-spacing: 0.4em; font-weight: 200; margin-bottom: 20px; }
-        .w-hero p { font-size: 14px; letter-spacing: 0.2em; color: #999; }
-
-        /* WORK UNIT: 480x480 */
-        .w-unit { 
-            width: 480px; height: 480px; padding: 60px; 
-            display: flex; flex-direction: column; justify-content: center; 
-            border: 1px solid #f0f0f0; transition: 0.4s;
-        }
-        .w-unit:hover { background-color: #fafafa; }
-        
-        .w-category { font-size: 10px; letter-spacing: 0.2em; color: #bbb; margin-bottom: 20px; font-family: sans-serif; }
-        .w-title { font-size: 18px; letter-spacing: 0.15em; margin-bottom: 25px; line-height: 1.4; font-weight: bold; }
-        .w-desc { font-size: 13px; line-height: 2.2; color: #777; text-align: justify; }
-
-        .addr-tag { font-family: sans-serif; font-size: 9px; color: #eee; margin-bottom: 15px; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORK | ALGO Inc. 制作実績</title>
+    <link rel="stylesheet" href="./assets/css/main.css?v=20260114_master">
 </head>
-<body>
-
+<body class="page-work">
 <div class="algo-site">
+
     <?php include('components/header.php'); ?>
 
-    <section class="w-hero">
-        <h1>SELECTED WORKS</h1>
-        <p>実績紹介：私たちのクリエイション</p>
-    </section>
+    <main class="page-main">
 
-    <section class="grid-row">
-        <?php
-        $works = [
-            ["cat" => "BRANDING", "title" => "IBCA 美容創造協会", "text" => "美容業界の新たなスタンダードを構築。ロゴデザインからブログ運用フェーズまで、一貫したブランドアイデンティティを提供しています。"],
-            ["cat" => "WEB DESIGN", "title" => "吉報旅 公式サイト", "text" => "「旅と運気」をテーマにしたHP構築プロジェクト。論語の精神をデザインに落とし込み、独自のユーザー体験を設計。"],
-            ["cat" => "APP DEVELOPMENT", "title" => "Fortune App Project", "text" => "占いとテクノロジーを融合させた次世代アプリの開発。直感的なインターフェースと緻密なロジックを両立させています。"],
-            ["cat" => "PACKAGE DESIGN", "title" => "Stemcell Cosmetic", "text" => "幹細胞コスメのパッケージデザイン。高級感と科学的根拠を感じさせるミニマルな造形美を追求しました。"],
-            ["cat" => "GRAPHIC", "title" => "Corporate Brochure", "text" => "企業のビジョンを視覚化するパンフレット制作。紙の質感からタイポグラフィまで、細部にこだわり抜いた一冊。"],
-            ["cat" => "SPACE DESIGN", "title" => "Creative Workspace", "text" => "「動的な静寂」を実現するオフィス空間のプロデュース。480pxグリッドの思考を物理空間に拡張。"],
-            ["cat" => "CONSULTING", "title" => "AI Support System", "text" => "AIを思考パートナーとして活用するビジネスモデルの提案。効率化とクリエイティビティの最大化を支援。"],
-            ["cat" => "CREATIVE", "title" => "Unique Lifestyle", "text" => "モノ・コト・場所を横断的にデザインする包括的なクリエイティブワーク。新しいライフスタイルの提案。"]
-        ];
+        <section class="a-hero-compact">
+            <div class="addr-tag">ADDRESS: A1 - D2</div>
+            <h1>WORK</h1>
+            <p style="margin-top:15px; color:#888; font-size:12px; letter-spacing:0.2em;">ALGO Inc. が手がけている事業・プロジェクト</p>
+        </section>
 
-        foreach($works as $index => $work): 
-            $col = chr(65 + ($index % 4)); // A, B, C, D
-            $row = ($index < 4) ? 3 : 4;   // 3行目 or 4行目
-        ?>
-            <div class="w-unit">
-                <div class="addr-tag">ADDRESS: <?php echo $col . $row; ?></div>
-                <div class="w-category"><?php echo $work['cat']; ?></div>
-                <div class="w-title"><?php echo $work['title']; ?></div>
-                <p class="w-desc"><?php echo $work['text']; ?></p>
-            </div>
-        <?php endforeach; ?>
-    </section>
+        <section class="grid-row">
+            <?php
+            // 提供いただいた文字情報に基づいたワークリスト
+            $works = [
+                ["cat"=>"COSME",     "title"=>"ALGO-COSME",      "text"=>"美容皮膚科向けECの設計と運用。"],
+                ["cat"=>"CELLS",     "title"=>"幹細胞 生搾り",    "text"=>"ドクター向け再生医療プロダクトの設計。"],
+                ["cat"=>"EDUCATION", "title"=>"IBCA 検定/講座",   "text"=>"美肌・メイクの検定＆教育プログラム。"],
+                ["cat"=>"AI SUPPORT", "title"=>"クリニックAI導入",  "text"=>"現場の運用に落ちる形へAIを導入。"],
+                ["cat"=>"FORTUNE",   "title"=>"五行診断アート",    "text"=>"生年月日からの五行バランスを可視化。"],
+                ["cat"=>"GOLF",      "title"=>"ALGO-GOLF",       "text"=>"思考とデータで組み立てるゴルフ講座。"],
+                ["cat"=>"FOOD",      "title"=>"おせち・冷凍食品",  "text"=>"ブランドを支える食品OEMパートナー。"],
+                ["cat"=>"CREATIVE",  "title"=>"制作スタジオ",     "text"=>"LP・教育コンテンツの統合デザイン。"],
+            ];
+
+            foreach ($works as $i => $work) {
+                // A5スタート、4列ごとに段落を計算
+                $col = chr(65 + ($i % 4));
+                $row = 3 + intdiv($i, 4); // HEROが1-2段目なので3段目から開始
+                $addr = $col . $row;
+                
+                // 背景色を交互に変えて「あの時のデザイン」の空気感を出す
+                $bg_class = (($i + intdiv($i, 4)) % 2 == 0) ? "bg-white" : "bg-light";
+            ?>
+                <article class="u-unit <?php echo $bg_class; ?>">
+                    <div class="addr-tag">ADDRESS: <?php echo $addr; ?></div>
+                    <div style="font-size: 11px; color: #888; letter-spacing: 0.2em; margin-bottom: 10px;">
+                        <?php echo htmlspecialchars($work["cat"]); ?>
+                    </div>
+                    <h2 style="font-size: 18px; margin-bottom: 20px;">
+                        <?php echo htmlspecialchars($work["title"]); ?>
+                    </h2>
+                    <p class="content-text" style="font-size: 12px; line-height: 2;">
+                        <?php echo htmlspecialchars($work["text"]); ?>
+                    </p>
+                </article>
+            <?php } ?>
+        </section>
+
+    </main>
 
     <?php include('components/footer.php'); ?>
-</div>
 
+</div>
 </body>
 </html>

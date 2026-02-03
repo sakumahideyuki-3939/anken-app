@@ -32,23 +32,10 @@
         }
         .work-ttl { font-size: 15px; font-weight: bold; letter-spacing: 0.15em; line-height: 1.5; }
 
-        /* スライダーの物理構造（PCは固定960で維持） */
+        /* スライダーの物理構造 */
         .slider-section { width: 100%; overflow: hidden; height: 960px; background: #fff; position: relative; }
         .slides { display: flex; width: 200%; height: 100%; transition: transform 0.8s ease-in-out; }
         .slide { width: 50%; height: 100%; flex-shrink: 0; }
-
-        /* ✅ スマホ全体：スライダーを画面高に合わせて中央ズレ解消 */
-        @media (max-width: 959px) {
-            .page-index .slider-section {
-                height: 100vh;   /* フォールバック */
-                height: 100svh;  /* iOSのアドレスバー変動に強い */
-                min-height: 520px; /* 低い端末の保険（不要なら削除OK） */
-            }
-            .page-index .slides,
-            .page-index .slide {
-                height: 100%;
-            }
-        }
     </style>
 </head>
 <body class="page-index">

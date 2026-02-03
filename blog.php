@@ -2,75 +2,75 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1920">
-    <title>BLOG | UNIQUE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOG | ALGO Inc.</title>
+    <link rel="stylesheet" href="./assets/css/main.css?v=<?php echo time(); ?>">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #fff; color: #333; font-family: "Hiragino Mincho ProN", serif; -webkit-font-smoothing: antialiased; }
-        .algo-site { width: 1920px; margin: 0 auto; }
-        .grid-row { display: flex; flex-wrap: wrap; width: 1920px; }
-
-        /* HEADER & HERO */
-        .b-hero { width: 1920px; height: 960px; background: #fcfcfc; display: flex; flex-direction: column; align-items: center; justify-content: center; border-bottom: 1px solid #f0f0f0; }
-        .b-hero h1 { font-size: 54px; letter-spacing: 0.5em; font-weight: 200; }
-
-        /* BLOG UNIT: 480x480 正方形 */
-        .b-unit { 
-            width: 480px; height: 480px; padding: 60px; 
-            display: flex; flex-direction: column; justify-content: space-between; 
-            border-right: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;
-            transition: 0.4s;
-        }
-        .b-unit:nth-child(4n) { border-right: none; }
-        .b-unit:hover { background-color: #fafafa; }
-
-        .addr-tag { font-family: sans-serif; font-size: 9px; color: #ccc; letter-spacing: 0.1em; }
-        .b-date { font-size: 11px; letter-spacing: 0.1em; color: #999; margin-top: 10px; }
-        .b-title { font-size: 18px; line-height: 1.8; font-weight: bold; margin: 20px 0; }
-        .b-btn { font-size: 11px; letter-spacing: 0.2em; border: 1px solid #ddd; padding: 10px; width: 120px; text-align: center; color: #333; }
+        .post-item { display: flex; gap: 50px; margin-bottom: 80px; width: 100%; }
+        .post-thumb { width: 360px; height: 240px; background: #f4f4f4; flex-shrink: 0; }
+        .post-info { flex-grow: 1; }
+        .post-meta { font-size: 11px; color: #999; letter-spacing: 0.1em; margin-bottom: 15px; }
+        .post-title { font-size: 18px; line-height: 1.6; margin-bottom: 15px; font-weight: bold; }
+        .post-excerpt { font-size: 13px; color: #666; line-height: 2.2; }
+        .sidebar-title { font-size: 12px; font-weight: bold; letter-spacing: 0.2em; border-bottom: 1px solid #000; padding-bottom: 15px; margin-bottom: 30px; width: 100%; }
     </style>
 </head>
-<body>
-
+<body class="page-blog">
 <div class="algo-site">
     <?php include('components/header.php'); ?>
 
-    <section class="b-hero">
-        <div class="addr-tag">ADDRESS: A1 - D2</div>
-        <h1>BLOG | UNIQUE</h1>
-        <p style="margin-top:20px; color:#999; letter-spacing:0.3em;">CREATIVE INSIGHTS</p>
+    <section class="grid-row" style="height: 480px;">
+        <div class="u-4">
+            <div class="inner-pad-center" style="align-items: center; text-align: center;">
+                <div class="addr-tag">ADDRESS: A1 - D2 / INSIGHTS</div>
+                <h1 style="font-size: 32px; letter-spacing: 0.4em;">B L O G</h1>
+                <p style="margin-top:20px; color:#888; font-size:12px;">現場の「問い」と、これからの知見</p>
+            </div>
+        </div>
     </section>
 
-    <section class="grid-row">
-        <?php
-        $blogs = [
-            ["date" => "2026.01.10", "title" => "480pxグリッドが生み出す、デザインの動的な静寂"],
-            ["date" => "2026.01.18", "title" => "IBCAプロジェクト：ブランド資産の構築とブログ運用"],
-            ["date" => "2026.01.18", "title" => "論語のリライト：吉報旅に込めた設計思想の断片"],
-            ["date" => "2026.01.10", "title" => "AIとの共創：クリエイティブの最前線から"],
-            ["date" => "2026.01.13", "title" => "タイポグラフィの美学：余白と文字の黄金比"],
-            ["date" => "2026.01.05", "title" => "空間をデザインする：480pxグリッドの物理的拡張"],
-            ["date" => "2026.01.01", "title" => "新年特別企画：2026年度のプロジェクト展望"],
-            ["date" => "2026.01.01", "title" => "UNIQUE思考：デザインが解決できること"]
-        ];
+    <section class="grid-row-flex">
+        
+        <div style="flex: 1; min-height: 960px;">
+            <div class="inner-pad-blog">
+                <div class="addr-tag">ADDRESS: A3 - C12 / ARTICLES</div>
+                
+                <article class="post-item">
+                    <div class="post-thumb"></div>
+                    <div class="post-info">
+                        <div class="post-meta">2026.01.11 | NEWS</div>
+                        <h2 class="post-title"><a href="single.php">ALGO本社サイト「ai.index.html」公開のお知らせ</a></h2>
+                        <p class="post-excerpt">医療・美容・学び・AIといった多様な領域を「問い」と「デザイン」で体系化する。ALGOの思想を束ねるハブとして、新しいコーポレートサイトを公開しました。</p>
+                    </div>
+                </article>
 
-        foreach($blogs as $index => $post): 
-            $col = chr(65 + ($index % 4)); 
-            $row = floor($index / 4) + 3;
-        ?>
-            <div class="b-unit">
-                <div class="top-meta">
-                    <div class="addr-tag">ADDRESS: <?php echo $col . $row; ?></div>
-                    <div class="b-date"><?php echo $post['date']; ?></div>
-                </div>
-                <div class="b-title"><?php echo $post['title']; ?></div>
-                <div class="b-btn">READ MORE</div>
+                <article class="post-item">
+                    <div class="post-thumb"></div>
+                    <div class="post-info">
+                        <div class="post-meta">2026.01.05 | PROJECT</div>
+                        <h2 class="post-title"><a href="#">美容教育におけるAI導入の現場報告</a></h2>
+                        <p class="post-excerpt">IBCAでの実例を元にした、クリエイティブとAIの共生についての考察。現場の「わからない」を「できる」に変えるフロー構築の舞台裏を公開します。</p>
+                    </div>
+                </article>
             </div>
-        <?php endforeach; ?>
+        </div>
+
+        <div class="u-blog-side">
+            <div class="inner-pad-blog">
+                <div class="addr-tag">ADDRESS: D3 - D12 / CATEGORY</div>
+                <div class="sidebar-title">CATEGORY</div>
+                <ul style="list-style:none; font-size:11px; letter-spacing:0.1em; line-height:3; color:#666; width: 100%;">
+                    <li><a href="#">> ALL POSTS</a></li>
+                    <li><a href="#">> NEWS</a></li>
+                    <li><a href="#">> PROJECT</a></li>
+                    <li><a href="#">> COLUMN</a></li>
+                </ul>
+            </div>
+        </div>
+
     </section>
 
     <?php include('components/footer.php'); ?>
 </div>
-
 </body>
 </html>
