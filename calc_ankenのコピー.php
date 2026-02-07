@@ -1,12 +1,14 @@
 <?php
 /**
- * calc_anken.php (五黄・暗剣・ダブル暗剣 統合ハブ版)
+ * calc_anken.php (五黄殺・暗剣殺 統合ハブ版)
  */
 require_once __DIR__ . '/logic_core.php';
 
-// 判定ファイルを一括自動読み込み
-foreach (['judge_gohou.php', 'judge_anken.php', 'judge_double.php'] as $file) {
-    if (file_exists(__DIR__ . '/' . $file)) { include_once __DIR__ . '/' . $file; }
+// 安全装置：判定ファイルを自動検知して読み込む
+foreach (['judge_gohou.php', 'judge_anken.php'] as $file) {
+    if (file_exists(__DIR__ . '/' . $file)) {
+        include_once __DIR__ . '/' . $file;
+    }
 }
 
 function get_houi_name($pos_index) {
@@ -26,18 +28,19 @@ function get_universal_board($center) {
 function calc_anken_main($by, $bm, $bd, $ty, $tm, $td) {
     global $SDAY_array, $date_change;
 
-    // --- 生年月日算出 ---
+    // --- 生年月日からの算出（本命星・命宮） ---
     $b_Y = YEAR_no_base($by, $bm); 
     $b_M = MONTH_no_base($by, $bm);
     if (isset($SDAY_array[$by][$bm-1]) && $bd < $SDAY_array[$by][$bm-1]) {
         $b_M = F_NO($b_M + 1); if ($bm == 2) $b_Y = F_NO($b_Y + 1);
     }
     list($b_D, $err_b) = DATE_no_base($by, $bm, $bd, $date_change);
+
     $m_board = get_universal_board($b_M);
     $meigu_pos = array_search($b_Y, $m_board); 
     $meigu_name = get_houi_name($meigu_pos);
 
-    // --- 指定日算出 ---
+    // --- 指定日算出（ターゲット盤） ---
     $t_Y = YEAR_no_base($ty, $tm); 
     $t_M = MONTH_no_base($ty, $tm);
     if (isset($SDAY_array[$ty][$tm-1]) && $td < $SDAY_array[$ty][$tm-1]) {
@@ -51,33 +54,29 @@ function calc_anken_main($by, $bm, $bd, $ty, $tm, $td) {
         'd' => get_universal_board($t_D)
     ];
 
-    // 親子判定用の中宮スターを保持
-    $centers = ['y'=>$t_Y, 'm'=>$t_M, 'd'=>$t_D];
-
-    // --- 基本判定の実行 ---
+    // --- 判定ロジックの実行（各判定ユニットを回す） ---
     $judges = [];
     foreach (['y', 'm', 'd'] as $k) {
         $judges[$k] = [
+            // 1. 五黄殺判定：方位名（命宮）でチェック
             'gohou' => function_exists('is_gohou_hit') ? is_gohou_hit($meigu_name, $boards[$k]) : false,
-            'anken' => function_exists('is_anken_hit') ? is_anken_hit($b_Y, $meigu_name, $boards[$k]) : false,
-            'double' => false // 初期化
+            
+            // 2. 暗剣殺判定：本命星（数字）でチェック
+            'anken' => function_exists('is_anken_hit') ? is_anken_hit($b_Y, $boards[$k]) : false
         ];
     }
 
-    // --- ダブル暗剣殺の階層判定 (月と日のみ) ---
-    if (function_exists('is_double_hit')) {
-        // 月盤のダブル：年(親)と月(子)を比較
-        $judges['m']['double'] = is_double_hit($b_Y, $centers['y'], $centers['m']);
-        // 日盤のダブル：月(親)と日(子)を比較
-        $judges['d']['double'] = is_double_hit($b_Y, $centers['m'], $centers['d']);
-    }
-
     return [
-        'honmei' => $b_Y, 'meigu' => $meigu_name,
+        'honmei' => $b_Y,
+        'meigu' => $meigu_name,
         'birth' => [
             'stars' => ['y'=>$b_Y, 'm'=>$b_M, 'd'=>$b_D],
             'boards' => ['y'=>get_universal_board($b_Y), 'm'=>get_universal_board($b_M), 'd'=>get_universal_board($b_D)]
         ],
-        'target' => ['stars' => ['y'=>$t_Y, 'm'=>$t_M, 'd'=>$t_D], 'boards' => $boards, 'judges' => $judges]
+        'target' => [
+            'stars' => ['y'=>$t_Y, 'm'=>$t_M, 'd'=>$t_D],
+            'boards' => $boards,
+            'judges' => $judges
+        ]
     ];
 }
