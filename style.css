@@ -1,0 +1,43 @@
+/*
+==========================================================================
+    ALGO MASTER FOUNDATION - 物理ロック版 (2026.01.24 Final)
+    Design Unit: Simple & Reliable Lighting System
+==========================================================================
+*/
+
+body { font-family: sans-serif; background: #f4f7f6; padding: 20px; margin: 0; color: #333; }
+.container { max-width: 1100px; margin: 0 auto; }
+
+.block-1 { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 25px; text-align: center; }
+.input-row { margin-bottom: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; align-items: center; }
+input { width: 65px; padding: 8px; border: 1px solid #ddd; border-radius: 6px; text-align: center; font-size: 1rem; }
+.btn-submit { background: #444; color: #fff; padding: 10px 30px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+.btn-nav { text-decoration: none; background: #fff; color: #555; border: 1px solid #ddd; padding: 8px 15px; border-radius: 6px; font-size: 0.9rem; }
+
+.status-monitor { margin-top: 20px; padding: 15px; background: #333; color: #fff; border-radius: 8px; font-size: 1.1rem; display: inline-block; width: 100%; }
+.status-monitor b { color: #ffd700; font-size: 1.2rem; }
+
+.board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 25px; }
+.board-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; }
+.board-title { font-weight: bold; margin-bottom: 15px; color: #777; font-size: 0.85rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
+
+.kyusei-table { border-collapse: collapse; margin: 0 auto 15px; width: 100%; max-width: 180px; }
+.kyusei-table td { width: 60px; height: 60px; border: 1px solid #eee; text-align: center; font-size: 1.8rem; font-weight: bold; }
+.center-cell { background: #fff9e6; color: #c09000; }
+
+.judge-info { border-top: 1px solid #f0f0f0; padding-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+.judge-info span { display: block; padding: 6px; border-radius: 4px; background: #fdfdfd; color: #ccc; font-size: 0.85rem; border: 1px solid #eee; }
+
+/* -----------------------------------------------------------------------
+   【点灯ユニット】
+   ----------------------------------------------------------------------- */
+
+/* .hit クラスが付いた時の強制スタイル */
+.hit {
+    background-color: #fff0f0 !important;
+    color: #e33 !important;
+    border: 1px solid #fcc !important;
+    font-weight: bold !important;
+}
+
+@media (max-width: 768px) { .board-grid { grid-template-columns: 1fr; } }
