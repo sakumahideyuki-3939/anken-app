@@ -1,0 +1,21 @@
+name: Deploy to Sakura Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-with: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy via SSH
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SAKURA_HOST }}
+          username: ${{ secrets.SAKURA_USER }}
+          key: ${{ secrets.SAKURA_SSH_KEY }}
+          port: 22
+          source: "."
+          target: "/home/algo-inc/projects/algo-inc/anken-app"
